@@ -1,3 +1,4 @@
+// 消息
 import axios from 'axios';
 import { stringify } from 'qs';
 export async function getMessageByType(params) {

@@ -8,7 +8,9 @@ const IndexLayout = ({ children }) => {
 	return (
 		<Layout>
 			<HeaderView />
-			<Content>{children}</Content>
+			<Content>
+				<div className={styles.mainContent}> {children}</div>
+			</Content>
 			<FooterView />
 		</Layout>
 	);

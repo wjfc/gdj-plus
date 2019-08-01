@@ -1,0 +1,35 @@
+@import '../../assets/base.less';
+
+.contentTop {
+  h3 {
+    position: relative;
+    height: 45px;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 45px;
+    color: @text-color-333;
+    opacity: 1;
+  }
+
+  h3:after {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    content: '';
+    width: 80px;
+    height: 3px;
+    background: @text-color-blue;
+  }
+
+  p {
+    font-size: 16px;
+    color: @text-color-999;
+    max-width: 45.8vw;
+  }
+
+  .btn {
+    font-size: 14px;
+    color: @text-color-blue;
+    border: 1px solid @text-color-blue;
+  }
+}

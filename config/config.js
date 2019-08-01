@@ -93,6 +93,22 @@ export default {
 				{
 					path: '/indexPage/index',
 					component: './IndexPage/Index'
+				},
+				{
+					path: '/indexPage/messageService',
+					component: './IndexPage/MessageService'
+				},
+				{
+					path: '/indexPage/videoService',
+					component: './IndexPage/VideoService'
+				},
+				{
+					path: '/indexPage/activityService',
+					component: './IndexPage/ActivityService'
+				},
+				{
+					path: '/indexPage/dataDevService',
+					component: './IndexPage/DataDevService'
 				}
 			]
 		},

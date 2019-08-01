@@ -1,0 +1,88 @@
+@import '~antd/lib/style/themes/default.less';
+@import '../../assets/base.less';
+
+.videoContent {
+  width: 100%;
+  min-height: calc(100vh - 192px);
+  padding: 7.6vh 16.7vw 0 19.3vw;
+  overflow: hidden;
+
+  .videoBottom {
+    margin-top: 5.9vh;
+    width: 100%;
+    height: 37.8vh;
+
+    .vsCard:hover {
+      box-shadow: 0px 5px 32px rgba(197, 195, 249, 0.15);
+    }
+
+    .vsCard {
+      background: #fff;
+      height: 18vh;
+      padding: 4.6vh 3.6vw;
+      cursor: pointer;
+      display: flex;
+
+
+      img {
+        width: 3.8vw;
+        height: 3.8vw;
+        margin-right: 1.3vw;
+      }
+
+      h3 {
+        font-size: 20px;
+        color: @text-color-333;
+        font-weight: 800;
+      }
+
+      p {
+        font-size: 14px;
+        color: @text-color-999;
+      }
+    }
+
+    .videoBotBox {
+      width: 100%;
+      height: 100%;
+
+      .videoBotCol {
+        height: 100%;
+        margin-bottom: 1.9vh;
+
+
+
+        .VideoCardBox {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+          height: 100%;
+
+        }
+
+        .plugFlow:hover {
+          box-shadow: 0px 5px 32px rgba(197, 195, 249, 0.15);
+        }
+
+        .plugFlow {
+          width: 100%;
+          height: 100%;
+
+          cursor: pointer;
+
+          .plugFlowPoster {
+            height: 19.7vh;
+            background: url('../../assets/indexPageImg/videoPoster.png') no-repeat;
+            background-size: cover;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ const TopLogo = () => {
 	return (
 		<div className={styles.topLogo}>
 			<a>
-				<img src={logo} alt="logo" />
+				{/**<img src={logo} alt="logo" /> */}
 				<h1>吴江广电+</h1>
 			</a>
 		</div>

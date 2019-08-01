@@ -329,6 +329,24 @@ class MessageStaion extends PureComponent {
 					]}
 				/>
 			);
+		} else {
+			return (
+				<BasicTable
+					rowKey="id"
+					columns={this.columns}
+					data={[]}
+					rowSelection={rowSelection}
+					onChange={this.handleBasicTableChange}
+					paginationProps={paginationProps}
+					btnBottom={ButtonBottom}
+					handleBtnClicks={[
+						this.handleBtnDel,
+						this.handleBtnRead,
+						this.handleBtnDelAll,
+						this.handleBtnReadAll
+					]}
+				/>
+			);
 		}
 	};
 	render() {

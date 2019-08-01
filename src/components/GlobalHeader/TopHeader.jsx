@@ -24,9 +24,9 @@ class HeaderView extends PureComponent {
 							消息
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="logout">
-						<Icon type="logout" />
-						登出
+					<Menu.Item key="login">
+						<Icon type="login" />
+						登录
 					</Menu.Item>
 				</Menu>
 			</Header>
