@@ -7,6 +7,7 @@ import styles from './DataDevService.less';
 import ds1 from '@/assets/indexPageImg/ds1.png';
 import ds2 from '@/assets/indexPageImg/ds2.png';
 import ds3 from '@/assets/indexPageImg/ds3.png';
+
 function DsCard(props) {
 	const { title, imgUrl, content } = props;
 	return (
