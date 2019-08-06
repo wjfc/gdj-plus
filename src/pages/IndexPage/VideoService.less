@@ -4,30 +4,34 @@
 .videoContent {
   width: 100%;
   min-height: calc(100vh - 192px);
-  padding: 7.6vh 16.7vw 0 19.3vw;
+  padding: 7.6vh 19.3vw 0 19.3vw;
   overflow: hidden;
 
   .videoBottom {
-    margin-top: 5.9vh;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 6.56vh;
     width: 100%;
-    height: 37.8vh;
+    height: 27.8vh;
 
     .vsCard:hover {
-      box-shadow: 0px 5px 32px rgba(197, 195, 249, 0.15);
+      animation: fadeShadow 0.5s forwards;
     }
 
     .vsCard {
-      background: #fff;
-      height: 18vh;
-      padding: 4.6vh 3.6vw;
-      cursor: pointer;
       display: flex;
-
+      align-items: center;
+      width: 30.2vw;
+      height: 13vh;
+      padding: 2.1vh 5.6vw;
+      cursor: pointer;
+      background: #fff;
+      box-shadow: 0px 3px 8px rgba(230, 240, 250, 1);
 
       img {
-        width: 3.8vw;
-        height: 3.8vw;
-        margin-right: 1.3vw;
+        width: 3vw;
+        height: 3vw;
+        margin-right: 1.5vw;
       }
 
       h3 {
@@ -39,48 +43,45 @@
       p {
         font-size: 14px;
         color: @text-color-999;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* autoprefixer: off */
+        -webkit-box-orient: vertical; // 参考 https://github.com/postcss/autoprefixer/issues/776
+        /* autoprefixer: on */
       }
     }
 
-    .videoBotBox {
+    .videoCardBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
       width: 100%;
       height: 100%;
+    }
 
-      .videoBotCol {
-        height: 100%;
-        margin-bottom: 1.9vh;
+    .plugFlow:hover {
+      animation: fadeShadow 0.5s forwards;
+    }
 
+    .plugFlow {
+      width: 30.2vw;
+      height: 100%;
+      cursor: pointer;
 
+      .vsCard:hover {
+        animation: none;
+      }
 
-        .VideoCardBox {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+      .plugFlowPoster {
+        height: 14.8vh;
+        background: url('../../assets/indexPageImg/videoPoster.png') no-repeat;
+        background-size: cover;
+
+        img {
           width: 100%;
           height: 100%;
-
-        }
-
-        .plugFlow:hover {
-          box-shadow: 0px 5px 32px rgba(197, 195, 249, 0.15);
-        }
-
-        .plugFlow {
-          width: 100%;
-          height: 100%;
-
-          cursor: pointer;
-
-          .plugFlowPoster {
-            height: 19.7vh;
-            background: url('../../assets/indexPageImg/videoPoster.png') no-repeat;
-            background-size: cover;
-
-            img {
-              width: 100%;
-              height: 100%;
-            }
-          }
         }
       }
     }

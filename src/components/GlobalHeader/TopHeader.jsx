@@ -25,8 +25,10 @@ class HeaderView extends PureComponent {
 						</Link>
 					</Menu.Item>
 					<Menu.Item key="login">
-						<Icon type="login" />
-						登录
+						<Link to="/user">
+							<Icon type="login" />
+							登录
+						</Link>
 					</Menu.Item>
 				</Menu>
 			</Header>

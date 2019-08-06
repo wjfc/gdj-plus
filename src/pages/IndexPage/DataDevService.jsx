@@ -22,26 +22,6 @@ function DsCard(props) {
 }
 
 class dsService extends PureComponent {
-	columns = {
-		xs: {
-			span: 24
-		},
-		sm: {
-			span: 24
-		},
-		md: {
-			span: 24
-		},
-		lg: {
-			span: 24
-		},
-		xl: {
-			span: 8
-		},
-		xxl: {
-			span: 8
-		}
-	};
 	componentDidMount() {}
 
 	componentWillUnmount() {}
@@ -58,25 +38,23 @@ class dsService extends PureComponent {
 						}}
 					/>
 					<div className={styles.dsBottom}>
-						<Row gutter={20} className={styles.dsBotBox}>
-							<Col {...this.columns} className={`${styles.dsBotCol} animated fadeInLeft `}>
-								<DsCard
-									imgUrl={ds2}
-									title="互联网能力"
-									content="统合封装互联网能力资源，如天气、位置、归属地信息等，让客户根据需求灵活调用相应互联网能力。"
-								/>
-							</Col>
-							<Col {...this.columns} className={`${styles.dsBotCol} animated fadeInDown `}>
-								<DsCard
-									imgUrl={ds3}
-									title="广电基础能力"
-									content="提供如用户信息对接、消息推送、短信平台等吴江广电内部基础能力，让广电内部资源促进业务发展。"
-								/>
-							</Col>
-							<Col {...this.columns} className={`${styles.dsBotCol} animated fadeInRight `}>
-								<DsCard imgUrl={ds1} title="政务能力" content="与政府相应信息系统完成对接，为政企客户提供医疗、教育等政务能力和便民服务。" />
-							</Col>
-						</Row>
+						<div className="animated fadeInLeft">
+							<DsCard
+								imgUrl={ds2}
+								title="互联网能力"
+								content="统合封装互联网能力资源，如天气、位置、归属地信息等，让客户根据需求灵活调用相应互联网能力。"
+							/>
+						</div>
+						<div className="animated fadeInDown">
+							<DsCard
+								imgUrl={ds3}
+								title="广电基础能力"
+								content="提供如用户信息对接、消息推送、短信平台等吴江广电内部基础能力，让广电内部资源促进业务发展。"
+							/>
+						</div>
+						<div className="animated fadeInRight">
+							<DsCard imgUrl={ds1} title="政务能力" content="与政府相应信息系统完成对接，为政企客户提供医疗、教育等政务能力和便民服务。" />
+						</div>
 					</div>
 				</section>
 			</div>

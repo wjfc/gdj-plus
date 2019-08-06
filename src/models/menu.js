@@ -16,23 +16,24 @@ function formatter(data, parentAuthority, parentName) {
 				return null;
 			}
 
-			let locale = 'menu';
+			let locale = '首页';
 
 			if (parentName && parentName !== '/') {
 				locale = `${parentName}.${item.name}`;
 			} else {
-				locale = `menu.${item.name}`;
+				locale = `首页.${item.name}`;
 			}
 
 			// console.log(locale);
 			// if enableMenuLocale use item.name,
 			// close menu international
-			const name = formatMessage({ id: locale, defaultMessage: item.name });
+			const name = item.name;
 
 			const result = {
 				...item,
-				name,
-				locale,
+				// name,
+				// locale,
+				title: locale,
 				authority: item.authority || parentAuthority
 			};
 			if (item.children) {

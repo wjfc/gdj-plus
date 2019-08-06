@@ -21,26 +21,6 @@ function VideoCard(props) {
 }
 
 class VideoService extends PureComponent {
-	columns = {
-		xs: {
-			span: 24
-		},
-		sm: {
-			span: 24
-		},
-		md: {
-			span: 24
-		},
-		lg: {
-			span: 24
-		},
-		xl: {
-			span: 12
-		},
-		xxl: {
-			span: 12
-		}
-	};
 	componentDidMount() {}
 
 	componentWillUnmount() {}
@@ -57,34 +37,23 @@ class VideoService extends PureComponent {
 						}}
 					/>
 					<div className={styles.videoBottom}>
-						<Row gutter={20} className={styles.videoBotBox}>
-							<Col {...this.columns} className={`${styles.videoBotCol} animated fadeInLeft `}>
-								<div className={styles.VideoCardBox}>
-									<VideoCard
-										title="多格式上传"
-										content="支持*.mp4;*.flv;*.ts等多格式上传，支持断点续传、大文件上传。"
-										imgUrl={video1}
-									/>
-									<VideoCard
-										title="统一加工"
-										content="统一转码注入，采用队列控制运算，依照硬件负载动态调节，确保系统时刻处于高效状态。
-"
-										imgUrl={video2}
-									/>
-								</div>
-							</Col>
-							<Col {...this.columns} className={`${styles.videoBotCol} animated fadeInRight `}>
-								<div className={styles.plugFlow}>
-									<div className={styles.plugFlowPoster} />
-									<VideoCard
-										title="统一存储推流"
-										content="存储系统采用分布式架构；关键数据库采用冗余架构，保障关键数据不丢失，智能切换最优线路。
-"
-										imgUrl={video3}
-									/>
-								</div>
-							</Col>
-						</Row>
+						<div className={`${styles.videoCardBox} animated fadeInDown`}>
+							<VideoCard title="多格式上传" content="支持*.mp4;*.flv;*.ts等多格式上传，支持断点续传、大文件上传。" imgUrl={video1} />
+							<VideoCard
+								title="统一加工"
+								content="统一转码注入，采用队列控制运算，依照硬件负载动态调节，确保系统时刻处于高效状态。"
+								imgUrl={video2}
+							/>
+						</div>
+
+						<div className={`${styles.plugFlow} animated fadeInRight`}>
+							<div className={styles.plugFlowPoster} />
+							<VideoCard
+								title="统一存储推流"
+								content="存储系统采用分布式架构；关键数据库采用冗余架构，保障关键数据不丢失，智能切换最优线路"
+								imgUrl={video3}
+							/>
+						</div>
 					</div>
 				</section>
 			</div>

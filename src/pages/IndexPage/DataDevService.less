@@ -8,19 +8,24 @@
   overflow: hidden;
 
   .dsBottom {
-    margin-top: 3.9vh;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4.67vh;
     width: 100%;
     height: 41vh;
 
     .dsCard:hover {
-      box-shadow: 0px 3px 8px rgba(230, 240, 250, 1);
+      animation: fadeShadow 0.5s forwards;
     }
 
     .dsCard {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 19.79vw;
+      height: 40.34vh;
       cursor: pointer;
+      box-shadow: 0px 3px 8px rgba(230, 240, 250, 1);
 
       img {
         width: 100%;

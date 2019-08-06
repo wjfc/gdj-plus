@@ -7,16 +7,50 @@
   align-items: center;
   width: 100%;
   min-height: calc(100vh - 192px);
-  padding: 0 19.3vw 0 16.9vw;
+  padding: 11.9vh 19.3vw 11.9vh 19.3vw;
   overflow: hidden;
 
   .asContentRight {
-    width: 29.7vw;
+    width: 27.3vw;
+
+    .asContentBottom {
+      margin-top: 5.9vh;
+
+
+      .asList {
+        width: 100%;
+        padding: 0;
+
+        li {
+          margin-bottom: 1.9vh;
+
+          .cardBox {
+            display: flex;
+
+            height: 2.2vh;
+            line-height: 2.2vh;
+
+            .icon {
+              font-size: 20px;
+              font-weight: bold;
+            }
+
+            p {
+              margin-left: 1.6vw;
+              font-size: 18px;
+              color: @text-color-333;
+            }
+          }
+        }
+
+      }
+    }
   }
 
   img {
+    margin-right: 2.1vw;
     width: 32vw;
     height: 37.6vh;
-    margin-right: 2.1vw;
+
   }
 }

@@ -23,31 +23,32 @@ const { check } = Authorized;
 /**
  * use Authorized check all menu item
  */
-
+const myMenuDates = JSON.parse(localStorage.getItem('permissionVOS'));
+console.log(myMenuDates);
 var menuData = [
 	{
 		path: '/messageCenter',
-		name: 'messageCenter',
+		name: '消息中心',
 		icon: 'bell',
 		children: [
 			{
 				path: '/messageCenter/station',
-				name: 'station',
+				name: '站内消息',
 				exact: true
 			},
 			{
 				path: '/messageCenter/all',
-				name: 'all',
+				name: '所有消息',
 				exact: true
 			},
 			{
 				path: '/messageCenter/unread',
-				name: 'unread',
+				name: '未读消息',
 				exact: true
 			},
 			{
 				path: '/messageCenter/readed',
-				name: 'readed',
+				name: '已读消息',
 				exact: true
 			}
 		]
@@ -64,16 +65,13 @@ const menuDataRender = (menuList) => {
 
 const BasicLayout = (props) => {
 	const { dispatch, children, settings, route: { routes, path, authority }, menuData2 } = props;
-	// console.log(menuData2);
+	console.log(menuData2);
 	/**
    * constructor
    */
 
 	useEffect(() => {
 		if (dispatch) {
-			dispatch({
-				type: 'user/fetchCurrent'
-			});
 			dispatch({
 				type: 'settings/getSetting'
 			});
@@ -136,7 +134,7 @@ const BasicLayout = (props) => {
 					)
 				}
 				// menuDataRender={menuDataRender}
-				formatMessage={formatMessage}
+				// formatMessage={formatMessage}
 				rightContentRender={(rightProps) => <RightContent {...rightProps} />}
 				{...props}
 				{...settings}

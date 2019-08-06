@@ -82,6 +82,20 @@ export default {
 	// umi routes: https://umijs.org/zh/guide/router.html
 	routes: [
 		{
+			path: '/user',
+			component: '../layouts/BlankLayout',
+			routes: [
+				{
+					path: '/user',
+					redirect: '/user/login'
+				},
+				{
+					path: '/user/login',
+					component: './User/login'
+				}
+			]
+		},
+		{
 			path: '/',
 			redirect: '/indexPage'
 		},
@@ -138,33 +152,33 @@ export default {
 			routes: [
 				{
 					path: '/messageCenter',
-					name: 'messageCenter',
+					name: '消息中心',
 					icon: 'bell',
 					routes: [
 						{ path: '/messageCenter', redirect: '/messageCenter/station' },
 						{
 							path: '/messageCenter/station',
-							name: 'station',
+							name: '站内消息',
 							component: './MessageCenter/Station'
 						},
 						{
 							path: '/messageCenter/all',
-							name: 'all',
+							name: '全部消息',
 							component: './MessageCenter/All'
 						},
 						{
 							path: '/messageCenter/unread',
-							name: 'unread',
+							name: '未读消息',
 							component: './MessageCenter/Unread'
 						},
 						{
 							path: '/messageCenter/readed',
-							name: 'readed',
+							name: '已读消息',
 							component: './MessageCenter/Readed'
 						},
 						{
 							path: '/messageCenter/info',
-							name: 'info',
+							name: '消息详情',
 							component: './MessageCenter/Info',
 							hideInMenu: true
 						}
