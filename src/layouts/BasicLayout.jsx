@@ -69,12 +69,10 @@ var menuData = [
 	}
 ];
 const menuDataRender = (menuList) => {
-	return menuData;
-	// console.log(menuList);
-	// return menuList.map((item) => {
-	// 	const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
-	// 	return Authorized.check(item.authority, localItem, null);
-	// });
+	return menuList.map((item) => {
+		const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
+		return Authorized.check(item.authority, localItem, null);
+	});
 };
 
 const BasicLayout = (props) => {
@@ -91,7 +89,7 @@ const BasicLayout = (props) => {
 			});
 			dispatch({
 				type: 'menu/getMenuData',
-				payload: { routes, path, authority, menuData }
+				payload: { routes, path, authority, menuData: myMenuDates }
 			});
 		}
 	}, []);
@@ -144,7 +142,7 @@ const BasicLayout = (props) => {
 							return menuData2;
 						}
 					) : (
-						false
+						menuDataRender
 					)
 				}
 				// menuDataRender={menuDataRender}

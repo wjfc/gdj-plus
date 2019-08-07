@@ -54,20 +54,20 @@ const plugins = [
 	]
 ]; // 针对 preview.pro.ant.design 的 GA 统计代码
 
-if (isAntDesignProPreview) {
-	plugins.push([
-		'umi-plugin-ga',
-		{
-			code: 'UA-72788897-6'
-		}
-	]);
-	plugins.push([
-		'umi-plugin-pro',
-		{
-			serverUrl: 'https://ant-design-pro.netlify.com'
-		}
-	]);
-}
+// if (isAntDesignProPreview) {
+// 	plugins.push([
+// 		'umi-plugin-ga',
+// 		{
+// 			code: 'UA-72788897-6'
+// 		}
+// 	]);
+// 	plugins.push([
+// 		'umi-plugin-pro',
+// 		{
+// 			serverUrl: 'https://ant-design-pro.netlify.com'
+// 		}
+// 	]);
+// }
 
 export default {
 	plugins,
@@ -81,6 +81,7 @@ export default {
 	devtool: isAntDesignProPreview ? 'source-map' : false,
 	// umi routes: https://umijs.org/zh/guide/router.html
 	routes: [
+		// 登录
 		{
 			path: '/user',
 			component: '../layouts/BlankLayout',
@@ -99,6 +100,7 @@ export default {
 			path: '/',
 			redirect: '/indexPage'
 		},
+		// 首页
 		{
 			path: '/indexPage',
 			component: '../layouts/IndexLayout',
@@ -187,6 +189,22 @@ export default {
 
 				{
 					component: './404'
+				}
+			]
+		},
+		// 个人中心
+		{
+			path: '/personalCenter',
+			component: '../layouts/BasicLayout',
+			routes: [
+				{ path: '/personalCenter', redirect: '/personalCenter/info' },
+				{
+					path: '/personalCenter/info',
+					name: '个人信息',
+					icon: 'bell'
+				},
+				{
+					component: '404'
 				}
 			]
 		},
