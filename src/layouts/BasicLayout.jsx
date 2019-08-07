@@ -24,8 +24,22 @@ const { check } = Authorized;
  * use Authorized check all menu item
  */
 const myMenuDates = JSON.parse(localStorage.getItem('permissionVOS'));
-console.log(myMenuDates);
+
 var menuData = [
+	{
+		path: '/user',
+		component: '../layouts/BlankLayout',
+		routes: [
+			{
+				path: '/user',
+				redirect: '/user/login'
+			},
+			{
+				path: '/user/login',
+				component: './User/login'
+			}
+		]
+	},
 	{
 		path: '/messageCenter',
 		name: '消息中心',

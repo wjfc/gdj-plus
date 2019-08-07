@@ -31,9 +31,8 @@ function formatter(data, parentAuthority, parentName) {
 
 			const result = {
 				...item,
-				// name,
-				// locale,
-				title: locale,
+				name,
+				locale,
 				authority: item.authority || parentAuthority
 			};
 			if (item.children) {
