@@ -1,0 +1,32 @@
+@import '~antd/es/style/themes/default.less';
+@import '../../assets/base.less';
+
+.userList {
+  min-width: 156px;
+  background: @text-color-333 !important;
+
+  a {
+    background: transparent;
+  }
+}
+
+:global {
+  .ant-dropdown-menu-item-active {
+    background: @text-color-blue !important;
+    color: #fff !important;
+  }
+
+  .ant-dropdown-menu-item:hover {
+    background: @text-color-blue !important;
+    color: #fff !important;
+
+    p {
+      color: #fff !important;
+    }
+  }
+}
+
+.userMenu {
+  text-align: center;
+  color: @text-color-999 !important;
+}

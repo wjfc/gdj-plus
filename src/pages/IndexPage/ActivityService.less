@@ -1,6 +1,16 @@
 @import '~antd/lib/style/themes/default.less';
 @import '../../assets/base.less';
 
+@keyframes changeColor {
+  from {
+    color: @text-color-333;
+  }
+
+  to {
+    color: @text-color-blue;
+  }
+}
+
 .asContent {
   display: flex;
   justify-content: space-around;
@@ -15,7 +25,6 @@
 
     .asContentBottom {
       margin-top: 5.9vh;
-
 
       .asList {
         width: 100%;
@@ -33,6 +42,25 @@
             .icon {
               font-size: 20px;
               font-weight: bold;
+              animation-name: changeColor;
+              animation-duration: 1s;
+              animation-fill-mode: forwards;
+            }
+
+            .delay2 {
+              animation-delay: 0.25s;
+            }
+
+            .delay4 {
+              animation-delay: 0.5;
+            }
+
+            .delay6 {
+              animation-delay: 0.75s;
+            }
+
+            .delay8 {
+              animation-delay: 1s;
             }
 
             p {
@@ -42,7 +70,6 @@
             }
           }
         }
-
       }
     }
   }
@@ -51,6 +78,5 @@
     margin-right: 2.1vw;
     width: 32vw;
     height: 37.6vh;
-
   }
 }

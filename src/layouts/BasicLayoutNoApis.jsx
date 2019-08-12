@@ -18,56 +18,11 @@ import HeaderView from '@/components/GlobalHeader/TopHeader';
 import { isAntDesignPro } from '@/utils/utils';
 import logo from '../assets/logo.jpg';
 import styles from './BasicLayout.less';
-const { check } = Authorized;
 
 /**
  * use Authorized check all menu item
  */
-const myMenuDates = JSON.parse(localStorage.getItem('permissionVOS'));
 
-var menuData = [
-  {
-    path: '/user',
-    component: '../layouts/BlankLayout',
-    routes: [
-      {
-        path: '/user',
-        redirect: '/user/login',
-      },
-      {
-        path: '/user/login',
-        component: './User/login',
-      },
-    ],
-  },
-  {
-    path: '/messageCenter',
-    name: '消息中心',
-    icon: 'bell',
-    children: [
-      {
-        path: '/messageCenter/station',
-        name: '站内消息',
-        exact: true,
-      },
-      {
-        path: '/messageCenter/all',
-        name: '所有消息',
-        exact: true,
-      },
-      {
-        path: '/messageCenter/unread',
-        name: '未读消息',
-        exact: true,
-      },
-      {
-        path: '/messageCenter/readed',
-        name: '已读消息',
-        exact: true,
-      },
-    ],
-  },
-];
 const menuDataRender = menuList => {
   return menuList.map(item => {
     const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
@@ -75,15 +30,13 @@ const menuDataRender = menuList => {
   });
 };
 
-const BasicLayout = props => {
+const BasicLayoutNoApis = props => {
   const {
     dispatch,
     children,
     settings,
     route: { routes, path, authority },
-    menuData2,
   } = props;
-  console.log(menuData2);
   /**
    * constructor
    */
@@ -92,11 +45,6 @@ const BasicLayout = props => {
     if (dispatch) {
       dispatch({
         type: 'settings/getSetting',
-      });
-
-      dispatch({
-        type: 'menu/getMenuData',
-        payload: { routes, path, authority, menuData: myMenuDates },
       });
     }
   }, []);
@@ -143,14 +91,7 @@ const BasicLayout = props => {
           );
         }}
         footerRender={false}
-        menuDataRender={
-          menuData2
-            ? () => {
-                return menuData2;
-              }
-            : menuDataRender
-        }
-        // menuDataRender={menuDataRender}
+        menuDataRender={menuDataRender}
         // formatMessage={formatMessage}
         rightContentRender={rightProps => <RightContent {...rightProps} />}
         {...props}
@@ -166,5 +107,4 @@ const BasicLayout = props => {
 export default connect(({ global, settings, menu: menuModel }) => ({
   collapsed: global.collapsed,
   settings,
-  menuData2: menuModel.menuData2,
-}))(BasicLayout);
+}))(BasicLayoutNoApis);

@@ -1,4 +1,5 @@
-import { queryCurrent, query as queryUsers } from '@/services/user';
+import { queryCurrent } from '@/services/user';
+import { setLongToken } from '@/utils/longToken';
 const UserModel = {
   namespace: 'user',
   state: {
@@ -13,11 +14,14 @@ const UserModel = {
       });
     },
 
-    *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
+    *fetchCurrent({ payload }, { call, put }) {
+      const { id } = payload;
+      const response = yield call(queryCurrent, id);
+      setLongToken(response); // 保存本次请求的token
+      const { data } = response;
       yield put({
         type: 'saveCurrentUser',
-        payload: response,
+        payload: data.data.roleList[0],
       });
     },
   },
