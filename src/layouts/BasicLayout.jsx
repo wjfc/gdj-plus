@@ -83,7 +83,6 @@ const BasicLayout = props => {
     route: { routes, path, authority },
     menuData2,
   } = props;
-  console.log(menuData2);
   /**
    * constructor
    */

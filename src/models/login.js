@@ -16,28 +16,26 @@ const Model = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
+
       localStorage.setItem('loginName', payload.loginName);
       localStorage.setItem('password', payload.password);
-      setLongToken(response); // 保存本次请求的token
-      const { data } = response;
       yield put({
         type: 'changeLoginStatus',
-        payload: data,
+        payload: response,
       });
-      if (data.errorCode === 0) {
+      if (response.errorCode === 0) {
         reloadAuthorized();
         // 默认跳转到的页面，线上可配置成首页。
         yield put(routerRedux.replace('/'));
       } else {
         notification.error({
           message: '提示信息',
-          description: (data && data.errorMessage) || '系统错误',
+          description: (response && response.errorMessage) || '系统错误',
         });
       }
     },
     *logout(_, { put }) {
       const { redirect } = getPageQuery(); // redirect
-
       if (window.location.pathname !== '/user/login' && !redirect) {
         yield put(
           routerRedux.replace({

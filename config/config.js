@@ -98,8 +98,7 @@ export default {
     {
       path: '/',
       redirect: '/personalCenter',
-    },
-    // 首页
+    }, // 首页
     {
       path: '/indexPage',
       component: '../layouts/IndexLayout',
@@ -129,8 +128,7 @@ export default {
           component: './IndexPage/DataDevService',
         },
       ],
-    },
-    // 控制台
+    }, // 控制台
     {
       path: '/manageConsole',
       component: '../layouts/BasicNomenuLayout',
@@ -149,8 +147,7 @@ export default {
           component: '404',
         },
       ],
-    },
-    // 消息中心
+    }, // 消息中心
     {
       path: '/messageCenter',
       component: '../layouts/BasicLayoutNoApis',
@@ -199,8 +196,7 @@ export default {
           component: './404',
         },
       ],
-    },
-    // 个人中心
+    }, // 个人中心
     {
       path: '/personalCenter',
       component: '../layouts/BasicLayout',
@@ -220,11 +216,25 @@ export default {
         },
       ],
     },
+    //系统设置
+    {
+      path: '/systemConfig',
+      component: '../layouts/BasicLayout',
+      routes: [
+        {
+          name: 'user',
+          path: '/systemConfig/user',
+          component: './SystemConfig/User',
+        },
+      ],
+    },
+
     {
       name: '403',
-      path: '/exception/403',
-      component: './exception/403',
+      path: '/Exception/403',
+      component: './Exception/403/Index',
     },
+
     {
       component: './404',
     },

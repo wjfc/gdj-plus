@@ -1,5 +1,7 @@
 import { queryCurrent } from '@/services/user';
 import { setLongToken } from '@/utils/longToken';
+import { notification } from 'antd';
+import { routerRedux } from 'dva/router';
 const UserModel = {
   namespace: 'user',
   state: {
@@ -17,11 +19,10 @@ const UserModel = {
     *fetchCurrent({ payload }, { call, put }) {
       const { id } = payload;
       const response = yield call(queryCurrent, id);
-      setLongToken(response); // 保存本次请求的token
-      const { data } = response;
+      const { errorCode } = response;
       yield put({
         type: 'saveCurrentUser',
-        payload: data.data.roleList[0],
+        payload: response.data.roleList[0],
       });
     },
   },

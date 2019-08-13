@@ -1,9 +1,7 @@
-/**
- * request 网络请求工具
- * 更详细的 api 文档: https://github.com/umijs/umi-request
- */
-import { extend } from 'umi-request';
+import axios from 'axios';
+import { getLongToken, setLongToken } from '@/utils/longToken';
 import { notification } from 'antd';
+import router from 'umi/router';
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -25,27 +23,68 @@ const codeMessage = {
  * 异常处理程序
  */
 
-const errorHandler = error => {
-  const { response } = error;
+const errorHandler = error => {};
+const request = axios.create({ headers: { 'X-Long-Token': getLongToken() }, timeout: 5000 });
 
-  if (response && response.status) {
-    const errorText = codeMessage[response.status] || response.statusText;
-    const { status, url } = response;
-    notification.error({
-      message: `请求错误 ${status}: ${url}`,
-      description: errorText,
-    });
-  }
+request.interceptors.request.use(
+  config => {
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
+request.interceptors.response.use(
+  response => {
+    const { headers } = response;
+    const longtoken = headers['x-long-token'];
+    if (longtoken) {
+      setLongToken(response);
+    }
+    // 针对广电+后台接口，返回成功但是errorcode不是0的情况下做拦截
+    const { data = {} } = response;
+    if (data.errorCode) {
+      if (data.errorCode === 10000) {
+        notification.error({
+          message: data.errorMessage,
+        });
+        router.push('/user/login');
+        return;
+      }
+    }
+    return data;
+  },
+  error => {
+    const { response = {} } = error;
+    const { status, statusText, url } = response;
+    const errortext = codeMessage[response.status] || response.statusText;
 
-  return response;
-};
-/**
- * 配置request请求时的默认参数
- */
+    if (status === 401) {
+      notification.error({
+        message: '未登录或登录已过期，请重新登录。',
+      });
+      router.push('/user/login');
+      return;
+    }
+    if (status) {
+      notification.error({
+        message: `请求错误 ${status}: ${url}`,
+        description: errortext,
+      });
+    }
+    if (status === 403) {
+      router.push('/exception/403');
+      return;
+    }
+    if (status <= 504 && status >= 500) {
+      router.push('/exception/500');
+      return;
+    }
+    if (status >= 404 && status < 422) {
+      router.push('/exception/404');
+    }
+    return error;
+  },
+);
 
-const request = extend({
-  errorHandler,
-  // 默认错误处理
-  credentials: 'include', // 默认请求是否带上cookie
-});
 export default request;
