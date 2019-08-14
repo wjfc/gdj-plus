@@ -19,11 +19,9 @@ const codeMessage = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。',
 };
-/**
- * 异常处理程序
- */
 
-const errorHandler = error => {};
+
+
 const request = axios.create({ headers: { 'X-Long-Token': getLongToken() }, timeout: 5000 });
 
 request.interceptors.request.use(
@@ -44,7 +42,7 @@ request.interceptors.response.use(
     // 针对广电+后台接口，返回成功但是errorcode不是0的情况下做拦截
     const { data = {} } = response;
     if (data.errorCode) {
-      if (data.errorCode === 10000) {
+      if (data.errorCode === 100000) {
         notification.error({
           message: data.errorMessage,
         });
@@ -55,6 +53,7 @@ request.interceptors.response.use(
     return data;
   },
   error => {
+    let errorObj = JSON.parse(JSON.stringify(error));
     const { response = {} } = error;
     const { status, statusText, url } = response;
     const errortext = codeMessage[response.status] || response.statusText;
@@ -83,7 +82,7 @@ request.interceptors.response.use(
     if (status >= 404 && status < 422) {
       router.push('/exception/404');
     }
-    return error;
+    return errorObj;
   },
 );
 

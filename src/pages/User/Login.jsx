@@ -6,7 +6,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import styles from './Login.less';
 import loginBg from '@/assets/indexPageImg/loginBg.png';
 const FormItem = Form.Item;
-@connect()
+@connect(({ loading }) => ({ isLoading: loading.effects['login/login'] }))
 @Form.create()
 class LoginPage extends Component {
   handleSubmit = e => {
@@ -29,6 +29,8 @@ class LoginPage extends Component {
     });
   };
   render() {
+    const { isLoading } = this.props;
+
     const { getFieldDecorator } = this.props.form;
     return (
       <div className={styles.main}>
@@ -70,6 +72,7 @@ class LoginPage extends Component {
               className="login-form-button"
               size="large"
               block
+              loading={isLoading}
             >
               登录
             </Button>

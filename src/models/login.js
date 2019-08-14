@@ -16,7 +16,6 @@ const Model = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
-
       localStorage.setItem('loginName', payload.loginName);
       localStorage.setItem('password', payload.password);
       yield put({
