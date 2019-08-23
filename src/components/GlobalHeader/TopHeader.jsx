@@ -10,11 +10,7 @@ const { Header } = Layout;
 }))
 class HeaderView extends PureComponent {
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'user/fetchCurrent',
-      payload: { id: localStorage.getItem('userid') },
-    });
+
   }
 
   componentWillUnmount() {}

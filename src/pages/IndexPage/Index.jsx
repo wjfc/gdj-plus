@@ -1,9 +1,16 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'dva';
 import MiddleHeader from '@/components/GlobalHeader/MiddleHeader';
 import styles from './Index.less';
-
+@connect()
 class Indexpage extends PureComponent {
-	componentDidMount() {}
+	componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'user/fetchCurrent',
+      payload: { id: localStorage.getItem('userid') },
+    });
+  }
 
 	componentWillUnmount() {}
 	render() {

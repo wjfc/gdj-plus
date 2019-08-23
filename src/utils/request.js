@@ -22,8 +22,8 @@ const codeMessage = {
 
 
 
-const request = axios.create({ headers: { 'X-Long-Token': getLongToken() }, timeout: 5000 });
-
+const request = axios.create({ headers: { 'X-Long-Token': getLongToken() }, });
+// 请求拦截
 request.interceptors.request.use(
   config => {
     return config;
@@ -32,6 +32,7 @@ request.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+// 响应拦截
 request.interceptors.response.use(
   response => {
     const { headers } = response;
@@ -39,7 +40,7 @@ request.interceptors.response.use(
     if (longtoken) {
       setLongToken(response);
     }
-    // 针对广电+后台接口，返回成功但是errorcode不是0的情况下做拦截
+    // 针对广电+后台接口，返回成功但是errorcode不是0的情况下统一做拦截
     const { data = {} } = response;
     if (data.errorCode) {
       if (data.errorCode === 100000) {
@@ -55,7 +56,7 @@ request.interceptors.response.use(
   error => {
     let errorObj = JSON.parse(JSON.stringify(error));
     const { response = {} } = error;
-    const { status, statusText, url } = response;
+    const { status, statusText } = response;
     const errortext = codeMessage[response.status] || response.statusText;
 
     if (status === 401) {
@@ -67,20 +68,20 @@ request.interceptors.response.use(
     }
     if (status) {
       notification.error({
-        message: `请求错误 ${status}: ${url}`,
+        message: `请求错误 ${status}`,
         description: errortext,
       });
     }
     if (status === 403) {
-      router.push('/exception/403');
+      // router.push('/exception/403');
       return;
     }
     if (status <= 504 && status >= 500) {
-      router.push('/exception/500');
+      // router.push('/exception/500');
       return;
     }
     if (status >= 404 && status < 422) {
-      router.push('/exception/404');
+      // router.push('/exception/404');
     }
     return errorObj;
   },

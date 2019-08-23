@@ -351,7 +351,6 @@ class MessageStaion extends PureComponent {
 	};
 	render() {
 		const { title, visible, content, onOk, onCancel } = this.state.modal;
-
 		return (
 			<PageHeaderWrapper>
 				<Modal title={title} visible={visible} onOk={onOk} onCancel={onCancel}>

@@ -24,50 +24,6 @@ const { check } = Authorized;
  * use Authorized check all menu item
  */
 const myMenuDates = JSON.parse(localStorage.getItem('permissionVOS'));
-
-var menuData = [
-  {
-    path: '/user',
-    component: '../layouts/BlankLayout',
-    routes: [
-      {
-        path: '/user',
-        redirect: '/user/login',
-      },
-      {
-        path: '/user/login',
-        component: './User/login',
-      },
-    ],
-  },
-  {
-    path: '/messageCenter',
-    name: '消息中心',
-    icon: 'bell',
-    children: [
-      {
-        path: '/messageCenter/station',
-        name: '站内消息',
-        exact: true,
-      },
-      {
-        path: '/messageCenter/all',
-        name: '所有消息',
-        exact: true,
-      },
-      {
-        path: '/messageCenter/unread',
-        name: '未读消息',
-        exact: true,
-      },
-      {
-        path: '/messageCenter/readed',
-        name: '已读消息',
-        exact: true,
-      },
-    ],
-  },
-];
 const menuDataRender = menuList => {
   return menuList.map(item => {
     const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
@@ -83,6 +39,7 @@ const BasicLayout = props => {
     route: { routes, path, authority },
     menuData2,
   } = props;
+
   /**
    * constructor
    */
@@ -138,7 +95,8 @@ const BasicLayout = props => {
           return first ? (
             <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
           ) : (
-            <span>{route.breadcrumbName}</span>
+            // <span>{route.breadcrumbName}</span>
+            <Link to={route.path}>{route.breadcrumbName}</Link>
           );
         }}
         footerRender={false}

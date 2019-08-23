@@ -25,7 +25,7 @@ const Model = {
       if (response.errorCode === 0) {
         reloadAuthorized();
         // 默认跳转到的页面，线上可配置成首页。
-        yield put(routerRedux.replace('/'));
+        yield put(routerRedux.replace('/indexPage'));
       } else {
         notification.error({
           message: '提示信息',

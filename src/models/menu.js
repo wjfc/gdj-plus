@@ -1,6 +1,5 @@
 import memoizeOne from 'memoize-one';
 import isEqual from 'lodash/isEqual';
-import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 
 const { check } = Authorized;
@@ -15,9 +14,7 @@ function formatter(data, parentAuthority, parentName) {
 			if (!item.name || !item.path) {
 				return null;
 			}
-
 			let locale = '首页';
-
 			if (parentName && parentName !== '/') {
 				locale = `${parentName}.${item.name}`;
 			} else {
@@ -110,7 +107,7 @@ export default {
 
 	effects: {
 		*getMenuData({ payload }, { put }) {
-			const { routes, authority, path, menuData } = payload;
+      const { routes, authority, path, menuData } = payload;
 			// http 请求
 			// const originalMenuData = memoizeOneFormatter(routes, authority, path);
 			const menuData2 = filterMenuData(memoizeOneFormatter(menuData));

@@ -72,7 +72,8 @@ const BasicLayoutNoApis = props => {
 
           return <Link to={menuItemProps.path}>{defaultDom}</Link>;
         }}
-        breadcrumbRender={(routers = []) => [
+        breadcrumbRender={(routers = []) => {
+          return [
           {
             path: '/',
             breadcrumbName: formatMessage({
@@ -81,13 +82,14 @@ const BasicLayoutNoApis = props => {
             }),
           },
           ...routers,
-        ]}
+        ];}}
         itemRender={(route, params, routes, paths) => {
           const first = routes.indexOf(route) === 0;
           return first ? (
             <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
           ) : (
-            <span>{route.breadcrumbName}</span>
+            //  <span>{route.breadcrumbName}</span>
+             <Link to={route.path}>{route.breadcrumbName}</Link>
           );
         }}
         footerRender={false}

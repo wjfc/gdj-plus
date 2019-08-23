@@ -30,11 +30,11 @@ const plugins = [
       },
       pwa: pwa
         ? {
-          workboxPluginMode: 'InjectManifest',
-          workboxOptions: {
-            importWorkboxFrom: 'local',
-          },
-        }
+            workboxPluginMode: 'InjectManifest',
+            workboxOptions: {
+              importWorkboxFrom: 'local',
+            },
+          }
         : false, // default close dll, because issue https://github.com/ant-design/ant-design-pro/issues/4665
       // dll features https://webpack.js.org/plugins/dll-plugin/
       // dll: {
@@ -97,7 +97,7 @@ export default {
     },
     {
       path: '/',
-      redirect: '/user',
+      redirect: '/indexPage',
     }, // 首页
     {
       path: '/indexPage',
@@ -200,14 +200,15 @@ export default {
     {
       path: '/personalCenter',
       component: '../layouts/BasicLayout',
-      authority: ['admin', 'user'],
       routes: [
         {
           path: '/personalCenter',
+          authority: ['admin', 'user'],
           redirect: '/personalCenter/info',
         },
         {
           path: '/personalCenter/info',
+          authority: ['admin', 'user'],
           name: '个人信息',
           icon: 'bell',
         },
@@ -215,26 +216,29 @@ export default {
           component: '404',
         },
       ],
-    },
-    //系统设置
+    }, //系统设置
     {
-      path: '/systemConfig',
+      path: '/system',
       component: '../layouts/BasicLayout',
       routes: [
         {
           name: 'user',
-          path: '/systemConfig/user',
-          component: './SystemConfig/User',
+          path: '/system/user',
+          // component: './SystemConfig/User',
+          component: './MessageCenter/All',
         },
       ],
     },
-
     {
       name: '403',
       path: '/Exception/403',
       component: './Exception/403/Index',
     },
-
+    {
+      name: '500',
+      path: '/exception/500',
+      component: './Exception/500',
+    },
     {
       component: './404',
     },
@@ -290,7 +294,7 @@ export default {
       changeOrigin: true, // pathRewrite: { '^/apis/': '' }, // 因为我们项目的接口前面并没有api 所以直接去掉
     },
     '/tvplus/': {
-      target: 'http://192.168.1.142:9090',
+      target: 'http://192.168.1.143:9090',
       // 后端服务器地址
       changeOrigin: true,
     },
